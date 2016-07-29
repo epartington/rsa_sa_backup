@@ -1,8 +1,8 @@
 #!/bin/bash
-VER=1.0.13
+VER=1.0.14
 #######################################################################
 ##
-## BACKUP TOOL for RSA Security Analytics 10.3 - 10.5
+## BACKUP TOOL for RSA Security Analytics 10.3 - 10.6
 ##
 ## The script compresses configuration files of all available SA components
 ## into the backup directory specified in BACKUPPATH.
@@ -19,6 +19,7 @@ VER=1.0.13
 ##
 #######################################################################
 # # New in this version 
+# 1.0.14    * Updated the 10.6 string to allow the backup to run on 10.6
 # 1.0.13    * Added ERLANG kill to RabbitMQ backup
 #           * Fixed SA version detection - excluded rsa-mcollective-agents
 # 1.0.12    * Fixed the backup folder creation
@@ -294,9 +295,9 @@ function check_SAVersion() {
     BUILDTYPE=${SA_VER_ARRAY[2]}
     RELEASENUM=${SA_VER_ARRAY[3]}
     writeLog "Found RSA Security Analytics $SAMAJOR.$SAMINOR.$BUILDTYPE" 
-    if [[ $SAMAJOR != 10 || !( $SAMINOR =~ ^3|4|5$ ) ]]; then 
-        writeLog "SA Backup script can only work on SA version 10.3, 10.4 or 10.5" 
-        exitOnError 1 "SA Backup script can only work on SA version 10.3, 10.4 or 10.5"
+    if [[ $SAMAJOR != 10 || !( $SAMINOR =~ ^3|4|5|6$ ) ]]; then 
+        writeLog "SA Backup script can only work on SA version 10.3, 10.4, 10.5 or 10.6" 
+        exitOnError 1 "SA Backup script can only work on SA version 10.3, 10.4, 10.5 or 10.6"
     fi 
 }
 ####################################################################
